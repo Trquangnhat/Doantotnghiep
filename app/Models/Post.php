@@ -14,7 +14,9 @@ class Post extends Model
         'id_user',
         'Tendovat',
         'Soluong',
+        'Soluongcon',
         'id_danhmuc',
+        'Diachi',
         'Mota',
         'Hinhanh',
         'Gia',
@@ -28,5 +30,9 @@ class Post extends Model
     public function danhmuc()
     {
         return $this->belongsTo(Menu::class, 'id_danhmuc', 'id');
+    }
+    public function traodoi()
+    {
+        return $this->belongsTo(PostExchange::class, 'id', 'id_baidang');
     }
 }

@@ -65,7 +65,7 @@
                         <li class="nav-item">
                             <a href="/admin/posts/bikhoa" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Bài đăng bị khóa</p>
+                                <p>Bài đăng bị từ chối</p>
                             </a>
                         </li>
                     </ul>
@@ -103,25 +103,44 @@
                 {{-- Doanh thu --}}
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-money-check-alt"></i>
-                        <p> Doanh thu
+                        <i class="nav-icon fas  fa-th-list"></i>
+                        <p> Thống kê
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/accs/add" class="nav-link">
+                            <a href="/admin/accs/success" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Số bài đăng</p>
+                                <p>Các bài trao đổi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/accs/list" class="nav-link">
+                            <a href="/admin/accs/revenue" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Người dùng đã nạp</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/admin/posts/totalformenu" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Theo danh mục</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/posts/phithu" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tổng phí thu</p>
+                            </a>
+                        </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>Đăng xuất
+                        </p>
+                    </a>
                 </li>
         </nav>
         <!-- /.sidebar-menus -->

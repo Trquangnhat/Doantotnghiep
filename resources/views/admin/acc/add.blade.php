@@ -1,9 +1,8 @@
 @extends('admin.main')
-
 @section('content')
 
     <body>
-        <form action="" method="POST">
+        <form method="POST">
             <div class="card-body ">
                 <div class="input-group mb-3">
                     <input type="text" name="tennd" class="form-control" placeholder="Full name">
@@ -55,43 +54,11 @@
 
                     <!-- /.col -->
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal"
-                            data-message="Tạo tài khoản thành công!">Thêm tài khoản</button>
+                        <button type="submit" class="btn btn-primary btn-block">Thêm tài khoản</button>
                     </div>
                     <!-- /.col -->
                 </div>
                 @csrf
         </form>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p style="display: flex;justify-content: center;align-items: center" id="modal-message"></p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <script>
-            $('#myModal').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget) // Button that triggered the modal
-                var message = button.data('message') // Extract info from data-* attributes
-                var modal = $(this)
-                modal.find('.modal-body p').text(message)
-            })
-        </script>
-        <style>
-            #modal-message {
-                font-family: Arial, sans-serif;
-                font-size: 25px;
-                font-weight: bold;
-                color: rgb(32, 226, 15);
-            }
-        </style>
     </body>
 @endsection
-@include('user.footer')

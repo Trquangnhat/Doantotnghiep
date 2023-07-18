@@ -6,7 +6,7 @@ body{
     height: 400px;
 }
 .col-md-3{
-    background: linear-gradient(45deg, #9bdd1f, #5ccadd);
+
     padding: 4%;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
@@ -38,4 +38,65 @@ body{
 }
 .contact-form button:focus{
     box-shadow:none;
+}
+
+/* CSS home items */
+.project_items{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    border-radius: 6px;
+    align-items: center;
+    height: 200px !important;
+    padding: 10px;
+    margin-bottom: -40px;
+}
+.project_items_sub{
+    display: flex;
+    align-items: center;
+}
+.project_items img{
+    width: 160px !important;
+    height: 160px !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(117, 117, 117, 0.5); 
+    margin-right: 30px;
+    object-fit: cover;
+    
+}
+.project_items_center {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0px !important;
+
+}
+.project_items_center .items_center_place,
+.project_items_center .items_center_price,
+.project_items_center .items_center_quantity,
+.project_items_center .items_center_category,
+.project_items_center .items_center_title{
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 6px;
+    
+}
+.project_items_center .items_center_price span{
+    color: red;
+}
+.project_items_center .items_center_place span,
+.project_items_center .items_center_quantity span,
+.project_items_center .items_center_category span,
+.project_items_center .items_center_title span{
+    font-weight: 500;
+}
+.button_details{
+    color: #060c74;
+    font-size: 16px;
+    margin-top: 154px;
+    padding-right: 10px;
+    display: block;
+}
+.button_details:hover{
+    font-weight: 600;
 }

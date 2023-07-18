@@ -41,8 +41,11 @@
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" type="radio" id="khachhang" name="trangthai" value="2"
                         {{ $post->trangthai == 2 ? 'checked=""' : '' }}>
-                    <label class="custom-control-label" for="khachhang">KHÓA BÀI ĐĂNG</label>
+                    <label class="custom-control-label" for="khachhang">TỪ CHỐI DUYỆT BÀI ĐĂNG</label>
                 </div>
+                @foreach ($email as $email)
+                    <input type="hidden" name="email" value="{{ $email->email }}">
+                @endforeach
 
             </div>
             <div class="row">

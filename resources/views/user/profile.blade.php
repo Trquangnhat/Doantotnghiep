@@ -1,4 +1,5 @@
 @include('user.header')
+<link rel="stylesheet" href="/template/dist/css/profile.css">
 
 <head>
     <title>Trang cá nhân</title>
@@ -8,73 +9,62 @@
 
 <body>
     @include('admin.alert')
-    <hr>
     <div class="container bootstrap snippet">
         <div class="row">
-            <div class="col-sm-10">
-                <h1>{{ $user->tennd }}</h1>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-sm-3">
-                <!--left col-->
-
-
                 <div class="text-center">
-                    <img src="{{ $detail->Anhdaidien }}" class="avatar img-circle img-thumbnail" alt="avatar">
-                </div><br>
-
+                    <img src="{{ $detail->Anhdaidien }}" class="avatarProfile img-circle img-thumbnail" alt="avatar">
+                </div>
             </div>
-            <!--/col-3-->
             <div class="col-sm-9">
-
                 <div class="tab-content">
                     <div class="tab-pane active" id="home">
-                        <hr>
                         <form class="form" action="" id="registrationForm">
                             <div class="form-group">
-
                                 <div class="col-xs-6">
-                                    <label for="first_name">
-                                        <h4>Tên người dùng</h4>
+                                    <label for="first_name" class="label_title">
+                                        Tên người dùng
                                     </label>
-                                    <label class="form-control" name="tennd"
-                                        id="email">{{ $user->tennd }}</label>
+                                    <label class="label_input" name="tennd" id="email">{{ $user->tennd }}</label>
                                 </div>
                             </div>
                             <div class="form-group">
 
                                 <div class="col-xs-6">
-                                    <label for="last_name" name="Sdt">
-                                        <h4>Số điện thoại</h4>
+                                    <label for="last_name" name="Sdt" class="label_title">
+                                        Số điện thoại
                                     </label>
-                                    <label class="form-control" name="Sdt"
-                                        id="email">{{ $detail->Sdt }}</label>
+                                    <label name="Diachi" class="label_input" id="email">
+                                        @if (empty($detail->Sdt))
+                                            <span style="color: red">Bạn chưa cập nhật số điện thoại</span>
+                                        @else
+                                            {{ $detail->Sdt }}
+                                        @endif
+                                    </label>
                                 </div>
                             </div>
-
-
                             <div class="form-group">
                                 <div class="col-xs-6">
-                                    <label for="email">
-                                        <h4>Địa chỉ</h4>
+                                    <label for="email" class="label_title">
+                                        Địa chỉ
                                     </label>
-                                    <label class="form-control" name="Diachi"
-                                        id="email">{{ $detail->Diachi }}</label>
+                                    <label name="Diachi" class="label_input" id="email">
+                                        @if (empty($detail->Diachi))
+                                            <span style="color: red"> Bạn chưa cập nhật địa chỉ</span>
+                                        @else
+                                            {{ $detail->Diachi }}
+                                        @endif
+                                    </label>
                                 </div>
                             </div>
-
-
                             <div class="form-group">
                                 <div class="col-xs-6">
-                                    <label for="email">
-                                        <h4>Email</h4>
+                                    <label for="email" class="label_title">
+                                        Email
                                     </label>
-                                    <label class="form-control" name="email"
-                                        id="email">{{ $user->email }}</label>
+                                    <label name="email" class="label_input" id="email">{{ $user->email }}</label>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-xs-12">
 
@@ -84,16 +74,11 @@
                                     </a>
                                 </div>
                         </form>
-
-                        <hr>
-
                     </div>
-                    <!--/tab-pane-->
                 </div>
-                <!--/col-9-->
             </div>
-            <!--/row-->
+        </div>
+    </div>
 </body>
-
 
 @include('user.footer')

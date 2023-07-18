@@ -102,27 +102,11 @@
 
                         <div class="col-md-12">
                             <!-- jquery validation -->
-                            <div style="display: flex; justify-content: space-between;">
-
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
-
-                                    </ul>
-                                </div>
-                            </div>
 
                             <div class="card card-primary mt-3">
-                                <div class="card-header">
-
-                                    <h3 class="card-title"> <span>{{ $title }}</span>
-
-
-
+                                <div class="card-header" style="background-color: rgb(192, 189, 189)">
+                                    <h3 class="card-title">
+                                        <span style="color: black;font-weight: bold">{{ $title }}</span>
                                     </h3>
                                 </div>
                                 @yield('content')

@@ -70,7 +70,7 @@ $("#upload").change(function (e) {
                     '<a href="' +
                         results.data.url +
                         '" target="_blank">' +
-                        '<img src="' +
+                        '<img class="avatarProfile img-circle img-thumbnail" src="' +
                         results.data.url +
                         '" width="100px"></a>'
                 );
@@ -146,7 +146,6 @@ function togglePasswordVisibility2() {
         toggleIcon.classList.add("fa-eye-slash");
     }
 }
-
 $("#upload2").change(function (e) {
     const form = new FormData();
     form.append("file", $(this)[0].files[0]);
@@ -163,7 +162,7 @@ $("#upload2").change(function (e) {
         .then((results) => {
             console.log(results);
             if (results.data.error === false) {
-                $("#hinhanh_show2").html(
+                $("#hinhanh_show").html(
                     '<a href="' +
                         results.data.url +
                         '" target="_blank">' +
@@ -171,7 +170,7 @@ $("#upload2").change(function (e) {
                         results.data.url +
                         '" width="100px"></a>'
                 );
-                $("#hinhanh02").val(results.data.url);
+                $("#hinhanh01").val(results.data.url);
             } else {
                 alert("Upload File Lỗi");
             }
@@ -179,33 +178,4 @@ $("#upload2").change(function (e) {
         .catch((err) => {
             console.log("catch", err);
         });
-
-    // try {
-    //     $.ajax({
-    //         processData: false,
-    //         contentType: "multipart/form-data",
-    //         type: "POST",
-    //         dataType: "JSON",
-    //         data: form,
-    //         url: "/upload/services",
-    //         success: function (results) {
-    //             console.log(results);
-    //             if (results.error === false) {
-    //                 $("#hinhanh_show").html(
-    //                     '<a href="' +
-    //                         results.url +
-    //                         '" target="_blank">' +
-    //                         '<img src="' +
-    //                         results.url +
-    //                         '" width="100px"></a>'
-    //                 );
-    //                 $("#hinhanh01").val(results.url);
-    //             } else {
-    //                 alert("Upload File Lỗi");
-    //             }
-    //         },
-    //     });
-    // } catch (e) {
-    //     console.log(e);
-    // }
 });

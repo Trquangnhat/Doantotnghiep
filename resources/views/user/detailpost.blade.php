@@ -1,67 +1,64 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 @include('user.header')
+<link rel="stylesheet" href="/template/dist/css/profile.css">
+<link rel="stylesheet" href="/template/dist/css/receive.css">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
+    <style>
+        .thumbnail {
+            border-radius: 5%;
+            transition: transform 0.3s;
+            object-fit: contain !important;
+            /* Thời gian hoạt động của transition */
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.2);
+            /* Scale ảnh lên 1.2 lần khi hover */
+        }
+    </style>
 </head>
-<div class="container">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-sm-6">
-                    <div class="white-box text-center"><img src="{{ $post->Hinhanh }} " class="img-responsive"></div>
+<div style="display: flex; margin-top:150px;justify-content: center">
+    <div style="width: 1200px;">
+        <div class="receive_top_content">
+            <img class="thumbnail" src="{{ $post->Hinhanh }}">
+            <div style="display: flex;flex-direction: column; width: 630px">
+                <h4 style="font-size: 18px">Tên sản phẩm: <span>{{ $post->Tendovat }}</span>
+                </h4>
+                <h4>Loại danh mục:<span>{{ $post->danhmuc->name }}</span></h4>
+                <h4>Số lượng còn: <span id="slmuondoi"
+                        style="color: #ff1414;font-weight: 600">{{ $post->Soluongcon }}</span></h4>
+                <h4>Địa chỉ trao đổi: <span>{{ $post->Diachi }}</span></h4>
+                <h4 style="font-weight: 600">
+                    Giá: <span style="color: #ff1414;">{!! \App\Helpers\Helper::price($post->Gia) !!}đ</span>
+                </h4>
+                <h4>Mô tả:</h4><span style=" white-space: pre-line;">{{ $post->Mota }}</span>
+                <div style="margin-left: 200px">
+                    <button class="btn btn-primary btn-rounded"><a style="color: #e7e6e7;"
+                            href="/user/buypost/{{ $post->id }} ">Mua
+                            ngay</a></button>
+                    <button class="btn btn-primary btn-rounded"><a style="color: #e7e6e7"
+                            href="/user/exchangepost/{{ $post->id }} ">Trao đổi</a></button>
                 </div>
-                <div class="col-lg-7 col-md-7 col-sm-6">
-                    <h4 class="box-title mt-5">{{ $post->Tendovat }}</h4>
-                    <p>{{ $post->Mota }}</p>
-                    <h2 class="mt-5">
-                        {!! \App\Helpers\Helper::price($post->Gia) !!}đ
-                    </h2>
-                    <button class="btn btn-primary btn-rounded">Mua ngay</button>
-                    <button class="btn btn-primary btn-rounded">Trao đổi</button>
-                    <h3 class="box-title mt-5">Danh mục: {{ $post->danhmuc->name }}</h3>
-                    {{-- <ul class="list-unstyled">
-                        <li><i class="fa fa-check text-success"></i>Sturdy structure</li>
-                        <li><i class="fa fa-check text-success"></i>Designed to foster easy portability</li>
-                        <li><i class="fa fa-check text-success"></i>Perfect furniture to flaunt your wonderful
-                            collectibles</li>
-                    </ul> --}}
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <h3 class="box-title mt-5">Thông tin liên hệ</h3>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-product">
-                            <tbody>
-                                <tr>
-                                    <td width="390">Tên người bán:</td>
-                                    <td>{{ $post->baidang->tennd }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Địa chỉ:</td>
-                                    @foreach ($detail as $detail)
-                                        <td>{{ $detail->Diachi }}</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Số điện thoại</td>
-
-                                    <td>{{ $detail->Sdt }}</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Ảnh đại diện</td>
-                                    <td><img width="100px" src="{{ $detail->Anhdaidien }}" /></td>
-                                    @endforeach
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            </div>
+            <div class="col-md-4" style="border-left: 1px solid black; margin-left: 150px">
+                <label style="color: #000000;font-weight:bold;font-size: 26px">Thông tin liên
+                    hệ</label>
+                <div class="mt-1 mb-1 spec-1">
+                    @foreach ($detail as $detail)
+                        <h4>Tên người đăng: <span>{{ $post->baidang->tennd }}</span></h4>
+                        <h4>Địa chỉ: <span>{{ $detail->Diachi }}</span> </h4>
+                        <h4>Số điện thoại: <span>{{ $detail->Sdt }}</span></h4>
+                        <h4>Email: <span>{{ $post->baidang->email }}</span></h4>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @include('user.footer')

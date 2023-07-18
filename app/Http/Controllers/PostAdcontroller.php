@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\PostAdservice;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostAdcontroller extends Controller
@@ -39,6 +40,7 @@ class PostAdcontroller extends Controller
     }
     public function show(Post $post)
     {
+        $emails = User::where('id', $post->id_user)->get();
         $editpost = $post;
         $user = $editpost->baidang;
         $tendanhmuc = $editpost->danhmuc;
@@ -46,12 +48,30 @@ class PostAdcontroller extends Controller
             'title' => ' Kiểm tra bài đăng: ', $post->Tendovat,
             'post' => $editpost,
             'user' => $user,
-            'tendanhmuc' => $tendanhmuc
+            'tendanhmuc' => $tendanhmuc,
+            'email' => $emails,
         ]);
     }
     public function update(Post $post, Request $request)
     {
         $this->PostAdservice->update($post, $request);
         return redirect('/admin/posts/daduyet');
+    }
+    public function totalformenu()
+    {
+
+        $posts = Post::all();
+        return view('admin.post.totalformenu', [
+            'title' => 'Thống kê số lượng bài đăng theo danh mục',
+            'posts' => $posts,
+        ]);
+    }
+    public function phithu()
+    {
+        $posts = Post::all();
+        return view('admin.post.phithu', [
+            'title' => 'Thống kê tổng phí thu từ bài đăng',
+            'posts' => $posts,
+        ]);
     }
 }

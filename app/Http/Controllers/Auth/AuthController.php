@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\DoiMatKhau;
 use App\Models\DetailUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 
 {
     public function register()
     {
-        $data['title'] = 'Register';
+        $data['title'] = 'Đăng kí';
         return view('register', $data);
     }
 
@@ -29,7 +31,8 @@ class AuthController extends Controller
             'email.required' => 'Bạn chưa nhập email',
             'tennd.required' => 'Bạn chưa nhập tên',
             'password.required' => 'Bạn chưa nhập mật khẩu',
-            'confirm_password.required' => 'Mật khẩu không trùng khớp',
+            'confirm_password.required' => 'Bạn chưa xác nhận mật khẩu',
+            'confirm_password.same' => 'Mật khẩu không trùng khớp',
         ]);
 
         $user = new User([
@@ -50,7 +53,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        $data['title'] = 'Login';
+        $data['title'] = 'Đăng nhập';
         return view('login', $data);
     }
 
@@ -84,7 +87,7 @@ class AuthController extends Controller
                 return redirect('/user/newfeed');
             }
         }
-        
+
         return redirect('login')->with('error', 'Sai tài khoản hoặc mật khẩu');
     }
 
@@ -113,5 +116,25 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login');
+    }
+
+    public function forgotpw()
+    {
+        return view('forgotpw', [
+            'title' => 'Quên mật khẩu',
+        ]);
+    }
+    public function forgotpw_action(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return redirect('login')->with('error', 'Email không tồn tại');
+        }
+        $randomString = Str::random(6);
+        $user->password = bcrypt($randomString);
+        $user->save();
+        dispatch((new DoiMatKhau($request->email, $randomString))->delay(now()->addSeconds(5)));
+
+        return redirect('login')->with('success', 'Mật khẩu mới đã được gửi tới Email của bạn!');
     }
 }

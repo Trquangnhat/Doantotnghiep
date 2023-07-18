@@ -30,6 +30,7 @@ class menuService
                 'active' => (string) $request->input('active'),
 
             ]);
+            Session::flash('success', 'Tạo danh mục mới thành công');
         } catch (\Exception $err) {
             Session::flash('error', $err->getMessage());
             return false;
@@ -44,6 +45,7 @@ class menuService
         $menu->description = (string) $request->input('description');
         $menu->active = (string) $request->input('active');
         $menu->save();
+        Session::flash('success', 'Cập nhật danh mục thành công');
         return true;
     }
 

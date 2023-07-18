@@ -1,4 +1,6 @@
 @include('user.header')
+<link rel="stylesheet" href="/template/dist/css/profile.css">
+
 
 <head>
     <title>{{ $title }}</title>
@@ -11,42 +13,34 @@
 <body>
     <div class="container bootstrap snippet">
         <form class="form" action="" method="post" id="registrationForm">
-
-            <div class="row">
-                <div class="col-sm-10">
-                    <h1>{{ $user->tennd }}</h1>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-sm-3">
-                    <!--left col-->
-
-
-
                     <div class="form-outline mb-4">
                         <div class="text-center" id="hinhanh_show">
-                            <img src="{{ $detail->Anhdaidien }}" class="avatar img-circle img-thumbnail">
+                            <img src="{{ $detail->Anhdaidien }}"
+                                class="avatarProfile img-circle img-thumbnail avatarEditImage">
                         </div>
-                        <input type="file" name="Anhdaidien" class="form-control" id="upload" />
 
+                        <label class="label_change_image" for="upload"> Thay đổi</label>
+                        <input type="file" name="Anhdaidien" class="form-control" id="upload"
+                            style="display: none
+                        " />
                         <input type="hidden" name="hinhanh" value="{{ $detail->Anhdaidien }}" id="hinhanh01">
                     </div>
-
-
                 </div>
                 <!--/col-3-->
                 <div class="col-sm-9">
 
                     <div class="tab-content">
                         <div class="tab-pane active" id="home">
-                            <hr>
+
                             <div class="form-group">
 
                                 <div class="col-xs-6">
-                                    <label for="first_name">
-                                        <h4>Tên người dùng</h4>
+                                    <label for="first_name" class="label_title">
+                                        Tên người dùng
                                     </label>
-                                    <input type="text" class="form-control" name="tennd" id="first_name"
+                                    <input type="text" class="label_input" name="tennd" id="first_name"
                                         placeholder="Tên người dùng" title="Nhập tên người dùng của bạn"
                                         value="{{ $user->tennd }}">
                                 </div>
@@ -54,10 +48,10 @@
                             <div class="form-group">
 
                                 <div class="col-xs-6">
-                                    <label for="last_name">
-                                        <h4>Số điện thoại</h4>
+                                    <label for="last_name" class="label_title">
+                                        Số điện thoại
                                     </label>
-                                    <input type="text" class="form-control" name="Sdt" id="last_name"
+                                    <input type="text" class="label_input" name="Sdt" id="last_name"
                                         placeholder="Số điện thoại" title="Số điện thoại" value="{{ $detail->Sdt }}">
                                 </div>
                             </div>
@@ -66,10 +60,10 @@
                             <div class="form-group">
 
                                 <div class="col-xs-6">
-                                    <label for="last_name">
-                                        <h4>Địa chỉ</h4>
+                                    <label for="last_name" class="label_title">
+                                        Địa chỉ
                                     </label>
-                                    <input type="text" class="form-control" name="Diachi" id="last_name"
+                                    <input type="text" class="label_input" name="Diachi" id="last_name"
                                         placeholder="Địa chỉ" title="Địa chỉ" value="{{ $detail->Diachi }}">
                                 </div>
                             </div>
@@ -79,10 +73,10 @@
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="email">
-                                    <h4>Email</h4>
+                                <label for="email" class="label_title">
+                                    Email
                                 </label>
-                                <label class="form-control" name="email" id="email">{{ $user->email }}</label>
+                                <label class="label_input" name="email" id="email">{{ $user->email }}</label>
                             </div>
                         </div>
 
@@ -96,7 +90,7 @@
                         </div>
                         @csrf
 
-                        <hr>
+
 
                     </div>
                     <!--/tab-pane-->

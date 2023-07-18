@@ -4,14 +4,13 @@
 namespace App\Http\Services;
 
 use App\Models\DetailUser;
+use App\Models\PostExchange;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class AccService
 {
-
-
 
     public function getuser()
     {
@@ -50,6 +49,7 @@ class AccService
             $Dtuser = new DetailUser([
                 'id_user' => $user->id,
             ]);
+            Session::flash('success', 'Tạo tài khoản mới thành công');
             $Dtuser->save();
         } catch (\Exception $err) {
             Session::flash('error', $err->getMessage());
@@ -61,21 +61,12 @@ class AccService
     public function update($request, $acc)
     {
         $oldPasswordHash = $acc->password;
-
-        // Giả sử đây là mật khẩu mới nhập từ input
-        // $newPassword = $request->password;
-
-        // if (Hash::check($newPassword, $oldPasswordHash)) {
-        // } else {
-        //     $acc->password = Hash::make($request->password);
-        // }
-
         $acc->tennd = (string) $request->input('tennd');
         // $acc->email = (string) $request->input('email');
         $acc->trangthai = (string) $request->input('active');
         $acc->role_id = (string) $request->input('role_id');
         $acc->save();
-
+        Session::flash('success', 'Cập nhạt tài khoản thành công');
         return true;
     }
     public function delete($request)
@@ -87,5 +78,10 @@ class AccService
         }
 
         return false;
+    }
+
+    public function getsuccess()
+    {
+        return PostExchange::where('trangthai', 1)->get();
     }
 }

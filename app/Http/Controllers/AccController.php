@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Http\Services\AccService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\Post;
 
 class AccController extends Controller
 {
@@ -54,6 +54,9 @@ class AccController extends Controller
 
         ]);
     }
+
+
+
     public function update(User $acc, Request $request)
     {
         $this->AccService->update($request, $acc);
@@ -71,5 +74,23 @@ class AccController extends Controller
         }
 
         return response()->json(['error' => true]);
+    }
+    public function revenue()
+    {
+        return view('admin.acc.revenue', [
+            'title' => 'Danh sách người dùng, tiền nạp',
+            'accs' => $this->AccService->getuser()
+        ]);
+    }
+
+    public function success()
+    {
+        $id_post = $this->AccService->getsuccess();
+        $postbd = Post::whereIn('id', $id_post->pluck('id_baidang'))->with('traodoi')->get();
+        return view('admin.acc.success', [
+            'title' => 'Danh sách các bài trao đổi thành công',
+            'posts' => $postbd,
+            'postexchanges' => $this->AccService->getsuccess()
+        ]);
     }
 }
